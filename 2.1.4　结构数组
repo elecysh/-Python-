@@ -1,0 +1,16 @@
+###我们先创建一个dtype对象persontype，通过其字典参数描述结构类型的各个字段。字典有两个关键字：names，formats。
+###每个关键字对应的值都是一个列表。names定义结构中的每个字段名，而formats则定义每个字段的类型：
+
+###S32 : 32个字节的字符串类型，由于结构中的每个元素的大小必须固定，因此需要指定字符串的长度
+###i : 32bit的整数类型，相当于np.int32
+###f : 32bit的单精度浮点数类型，相当于np.float32
+###然后我们调用array函数创建数组，通过关键字参数 dtype=persontype， 指定所创建的数组的元素类型为结构persontype。
+###运行上面程序之后，我们可以在IPython中执行如下的语句查看数组a的元素类型
+
+import numpy as np
+persontype = np.dtype({
+                'names':['name','age','weight'],
+                'formats':['S32','i','f']
+                    })
+a = np.array([('zhang',32,75.5),('Wang',24,65.2)],dtype=persontype)
+a.dtype
